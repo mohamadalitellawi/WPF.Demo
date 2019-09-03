@@ -5,8 +5,75 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Demo.WPF.DataBinding"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
+        Title="MainWindow" Height="350" Width="700"
+        Name="mainWindow"
+        FontSize="14">
+    <Grid DataContext="{Binding ElementName=mainWindow}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="16" />
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Author Name" />
+        <TextBlock Text=":"
+                   Grid.Column="1"
+                   HorizontalAlignment="Center" />
+        <TextBox Text="{Binding AuthorName,Mode=OneWay}"
+                 Grid.Column="2" />
+        <TextBlock Text="(Mode=OneWay)"
+                   Grid.Column="4" />
+
+        <TextBlock Text="Book Name"
+                   Grid.Row="1"
+                   Grid.Column="0" />
+        <TextBlock Text=":"
+                   Grid.Row="1"
+                   Grid.Column="1"
+                   HorizontalAlignment="Center" />
+        <TextBox Text="{Binding BookName, Mode=TwoWay}"
+                 Grid.Row="1"
+                 Grid.Column="2" />
+        <TextBlock Text="(Mode=TwoWay)"
+                   Grid.Row="1"
+                   Grid.Column="4" />
+
+        <TextBlock Text="Published"
+                   Grid.Row="2"
+                   Grid.Column="0" />
+        <TextBlock Text=":"
+                   Grid.Row="2"
+                   Grid.Column="1"
+                   HorizontalAlignment="Center" />
+        <TextBox Text="{Binding PublishDate, Mode=TwoWay, 
+                 UpdateSourceTrigger=PropertyChanged}"
+                 Grid.Row="2"
+                 Grid.Column="2" />
+        <TextBlock Text="(Mode=TwoWay,  UpdateSourceTrigger=PropertyChanged)"
+                   Grid.Row="2"
+                   Grid.Column="4" />
+        <StackPanel Grid.Row="3"
+                    Grid.Column="2"
+                    Margin="0 20 0 0">
+            <TextBlock Text="You entered Author Name:"
+                       FontWeight="Bold" />
+            <TextBlock Text="{Binding AuthorName}" />
+            <TextBlock Text="You entered Book Name:"
+                       FontWeight="Bold"
+                       Margin="0 10 0 0" />
+            <TextBlock Text="{Binding BookName}" />
+            <TextBlock Text="You entered Published Date:"
+                       FontWeight="Bold"
+                       Margin="0 10 0 0" />
+            <TextBlock Text="{Binding PublishDate}" />
+        </StackPanel>
     </Grid>
 </Window>
